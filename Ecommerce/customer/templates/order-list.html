@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{%block body%}
+{%for o in orders%}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-5">
+                {%if o.product.image%}
+                <img class="card-img-top mb-5 mb-md-0" src="{{o.product.image.url}}" alt="..." />
+                {%else%}
+                <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
+                {%endif%}
+            </div>
+            <div class="col-md-5">
+                <div class="small mb-1">SKU: BST-498</div>
+                <h1 class="display-5 fw-bolder">{{o.product.product_name}}</h1>
+
+                <div class="fs-5 mb-5">
+                    <p class="">{{o.product.price}}</p>
+    
+                    <p class="">expected deliverydate {{o.expected_deliverydate}}</p>
+                    <p class="">status {{o.status}}</p>
+
+
+                    <a class="btn btn-outline-dark" href="{%url 'cancelled' o.id%}">
+                        <i class="bi-cart-fill me-1"></i>
+                        cancel
+                        <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">{{count}}</span> -->
+                    </a>
+                    <a class="btn btn-outline-dark" href="{%url 'review-add' o.product.id%}">
+                        <i class="bi-cart-fill me-1"></i>
+                        add your review
+                        <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">{{count}}</span> -->
+                    </a>
+
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+{%endfor%}
+{%endblock%}
